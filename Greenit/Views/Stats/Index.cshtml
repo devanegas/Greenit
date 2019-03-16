@@ -1,0 +1,49 @@
+﻿@model Greenit.Models.StatsViewModel
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService Authorization
+@{
+    var canEdit = (await Authorization.AuthorizeAsync(User, MyIdentityData.BlogPolicy_Edit)).Succeeded;
+}
+@{
+    var canDelete = (await Authorization.AuthorizeAsync(User, MyIdentityData.BlogPolicy_Delete)).Succeeded;
+}
+@{
+    var canAdd = (await Authorization.AuthorizeAsync(User, MyIdentityData.BlogPolicy_Add)).Succeeded;
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Number of channels
+            </th>
+            <th>
+               Number of blog posts
+            </th>
+            <th>
+               Number of comments
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+        {*@
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.channelsSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.blogPostslSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.commentsSize)
+                </td>
+            </tr>
+        @*}*@
+    </tbody>
+</table>
