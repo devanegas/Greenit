@@ -23,7 +23,7 @@
     @if (Model.posts != null && Model.posts.Any())
     {
         @foreach (var post in Model.posts)
-        {<a class="letteredChannel" asp-controller="BlogPosts" asp-action="Details" asp-route-id="@post.Id">
+        {<a class="letteredChannel" asp-controller="BlogPosts" asp-action="Details" asp-route-id="@post.Id" asp-route-slug="@post.Slug">
              <h5>
                  &nbsp&nbsp&nbsp&nbsp<img src="~/images/blog_icon.png" height="30px" width="30px" />
                  @post.Title

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace Greenit.Controllers
 {
@@ -46,9 +47,9 @@ namespace Greenit.Controllers
 
             //var currentUser = await _userManger.GetUserAsync(User); 
         }
-         
-        // GET: BlogPosts/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+        [HttpGet, Route("Details/{id?}/{slug}")]
+        public async Task<IActionResult> Details(int? id, string slug)
         {
             if (id == null)
             {
@@ -183,8 +184,6 @@ namespace Greenit.Controllers
             }
             return View(comment);
         }
-
-
 
     }
 }

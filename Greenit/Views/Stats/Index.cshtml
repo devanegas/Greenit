@@ -46,7 +46,16 @@
                 @Html.DisplayFor(modelItem => Model.commentsSize)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model.mostRecentComment[0].Body)
+                @{
+                    if (Model.mostRecentComment.Length != 0) {
+                        Html.DisplayFor(modelItem => Model.mostRecentComment[0].Body);
+                    }
+                    else
+                    {
+                        <p>0</p>
+                    }
+
+                }
             </td>
         </tr>
         

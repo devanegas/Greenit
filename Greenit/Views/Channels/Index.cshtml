@@ -35,7 +35,7 @@
         {
             <tr>
                 <td>
-                    <a class="letteredChannel" asp-action="Details" asp-route-id="@item.Id">
+                    <a class="letteredChannel" asp-controller="Channels" asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">
                         <img src="~/images/blog-icon.png" height="30px" width="37px" />
                         @Html.DisplayFor(modelItem => item.Name)
                     </a>

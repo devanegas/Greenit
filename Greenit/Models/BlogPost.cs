@@ -10,6 +10,7 @@ namespace Greenit.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Slug { get; set; }
         public string UserId { get; set; }
         public List<BlogPost> posts {get;set;}
         public List<User> AdminUsers { get; set;}
@@ -18,6 +19,7 @@ namespace Greenit.Models
     public class BlogPost
     {
         public int Id { get; set; }
+        public string Slug { get; set; }
         public string Title { get; set; }
         public int ChannelId { get; set; }
         public string Body { get; set; }
