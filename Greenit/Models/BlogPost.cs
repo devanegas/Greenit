@@ -12,6 +12,8 @@ namespace Greenit.Models
         public string Name { get; set; }
         public string UserId { get; set; }
         public List<BlogPost> posts {get;set;}
+        public List<User> AdminUsers { get; set;}
+        public List<User> BlockedUsers { get; set; }
     }
     public class BlogPost
     {
@@ -24,12 +26,17 @@ namespace Greenit.Models
         public List<Comment> Comments { get; set; }
     }
     public class Comment
-    {
-        
+    {    
         public int Id { get; set; }
         public int PostId { get; set; }
         public string UserId { get; set; }
         public string Body { get; set; }
         public DateTime Posted { get; set; }
     }
+    public class User
+    {   
+        public int Id { get; set;}
+        public string Username { get; set;}
+    }
+
 }

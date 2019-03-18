@@ -27,23 +27,81 @@
             <th>
                Number of comments
             </th>
-            <th></th>
+            <th>
+                Most Recent Post
+            </th>
         </tr>
     </thead>
     <tbody>
         @*@foreach (var item in Model)
         {*@
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.channelsSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.blogPostslSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.commentsSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.mostRecentComment[0].Body)
+            </td>
+        </tr>
+        
+        @*}*@
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th>
+                Posts
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model.indvComments)
+        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => Model.channelsSize)
+                    @Html.DisplayFor(item => comment.userid)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => Model.blogPostslSize)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.commentsSize)
+                    @Html.DisplayFor(item => comment.count)
                 </td>
             </tr>
-        @*}*@
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th>
+                Comments
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model.indvPosts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(item => comment.userid)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => comment.count)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

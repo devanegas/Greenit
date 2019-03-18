@@ -11,6 +11,7 @@ namespace Greenit.Services
         Task<BlogPost[]> GetBlogPostAsync();
         Task<bool> AddBlogPostAsync(BlogPost newpost);
         Task<Comment[]> GetCommentsAsync();
-
+        Task<CommentStats[]> GetCommentCountByUserAsync();
+        Task<PostStats[]> GetPostCountByUserAsync();
     }
 }

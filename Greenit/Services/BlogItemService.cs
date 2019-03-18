@@ -40,5 +40,15 @@ namespace Greenit.Services
                 .ToArrayAsync();
         }
 
+        public async Task<CommentStats[]> GetCommentCountByUserAsync()
+        {
+            return await _context.comments.GroupBy(p => p.UserId).Select(g => new CommentStats{ userid = g.Key, count = g.Count() })
+                .ToArrayAsync();
+        }
+        public async Task<PostStats[]> GetPostCountByUserAsync()
+        {
+            return await _context.BlogPosts.GroupBy(p => p.UserId).Select(g => new PostStats { userid = g.Key, count = g.Count() })
+                .ToArrayAsync();
+        }
     }
 }

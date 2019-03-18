@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Greenit.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Greenit.Services;
-using Greenit.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Greenit
 {
@@ -32,6 +32,7 @@ namespace Greenit
             });
             services.AddScoped<IBlogItemService, BlogItemService>();
             services.AddScoped<IChannelService, ChannelService>();
+            services.AddScoped<ChannelStatsService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             //does not take both identiy user and identity role 
@@ -42,9 +43,9 @@ namespace Greenit
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(MyIdentityData.BlogPolicy_Add, policy => policy.RequireRole(MyIdentityData.AdminRoleName, MyIdentityData.EditorRoleName, MyIdentityData.ContributorRoleName));
-                options.AddPolicy(MyIdentityData.BlogPolicy_Edit, policy => policy.RequireRole(MyIdentityData.AdminRoleName, MyIdentityData.EditorRoleName));
-                options.AddPolicy(MyIdentityData.BlogPolicy_Delete, policy => policy.RequireRole(MyIdentityData.AdminRoleName));
+                options.AddPolicy(MyIdentityData.BlogPolicy_Add, policy => policy.RequireRole(MyIdentityData.AdminRoleName, MyIdentityData.ChannelAdminRoleName, MyIdentityData.ContributorRoleName));
+                options.AddPolicy(MyIdentityData.BlogPolicy_Edit, policy => policy.RequireRole(MyIdentityData.AdminRoleName, MyIdentityData.ChannelAdminRoleName));
+                options.AddPolicy(MyIdentityData.BlogPolicy_Delete, policy => policy.RequireRole(MyIdentityData.AdminRoleName, MyIdentityData.ChannelAdminRoleName));
                 //options.AddPolicy(MyIdentityData.BlogPolicy_View, policy => policy.RequireRole(MyIdentityData.AdminRoleName));
             });
 

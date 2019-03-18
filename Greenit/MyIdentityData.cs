@@ -9,18 +9,17 @@ namespace Greenit
     public class MyIdentityData
     {
         public const string AdminRoleName = "Admin";
-        public const string EditorRoleName = "Editor";
+        public const string ChannelAdminRoleName = "ChannelAdmin";
         public const string ContributorRoleName = "Contributor";
-        //public const string Anonymous = "Anonymous";
+
 
         public const string BlogPolicy_Add = "CanAddBlogPosts";
         public const string BlogPolicy_Edit = "CanEditBlogPosts";
         public const string BlogPolicy_Delete = "CanDeleteBlogPosts";
-        //public const string BlogPolicy_View = "CanViewBlogPosts";
 
         internal static void SeedData(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            foreach (var roleName in new[] { AdminRoleName, EditorRoleName, ContributorRoleName })
+            foreach (var roleName in new[] { AdminRoleName, ChannelAdminRoleName, ContributorRoleName })
             {
                 var role = roleManager.FindByNameAsync(roleName).Result;
                 if (role == null)
@@ -45,9 +44,9 @@ namespace Greenit
                 }
                 if (userName.StartsWith("editor"))
                 {
-                    userManager.AddToRoleAsync(user, EditorRoleName).GetAwaiter().GetResult();
+                    userManager.AddToRoleAsync(user, ChannelAdminRoleName).GetAwaiter().GetResult();
                 }
-                if (userName.StartsWith("contributor"))
+                if (userName.StartsWith(""))
                 {
                     userManager.AddToRoleAsync(user, ContributorRoleName).GetAwaiter().GetResult();
                 }

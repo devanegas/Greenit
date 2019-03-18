@@ -168,7 +168,7 @@ namespace Greenit.Controllers
             {
 
                 comment.UserId = User.Identity.Name;
-
+                comment.Posted = DateTime.Now;
 
 
                 var Post = await _context.BlogPosts.Where(p => p.Id == comment.PostId)

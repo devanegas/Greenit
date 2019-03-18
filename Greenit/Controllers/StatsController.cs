@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Greenit.Data;
 using Greenit.Models;
 using Greenit.Services;
@@ -38,6 +39,9 @@ namespace Greenit.Controllers
             statsView.blogPostslSize = blogs.Length;
             statsView.channelsSize = channels.Length;
             statsView.commentsSize = comments.Length;
+            statsView.indvComments = await _blogItemService.GetCommentCountByUserAsync();
+            statsView.indvPosts = await _blogItemService.GetPostCountByUserAsync();
+            statsView.mostRecentComment = await _context.comments.OrderByDescending(c => c.Posted).Take(1).ToArrayAsync();
 
             return View(statsView);
         }

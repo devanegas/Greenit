@@ -71,11 +71,13 @@ namespace Greenit.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = MyIdentityData.BlogPolicy_Add)]
         public async Task<IActionResult> Create([Bind("Id,Name")] Channel channel)
         {
             if (ModelState.IsValid)
             {
                 channel.UserId = User.Identity.Name;
+                _userManager.AddToRoleAsync(await _userManager.FindByEmailAsync(channel.UserId), "ChannelAdmin");
                 _context.Add(channel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService Authorization
+@{
+    var canDelete = (await Authorization.AuthorizeAsync(User, MyIdentityData.BlogPolicy_Delete)).Succeeded;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,26 +19,30 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="/css/site.css" />
 
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                
-                <a style="font-size: x-large" class="navbar-brand" asp-area="" asp-controller="Channels" asp-action="Index"><img src="~/images/greenit.png" height="30px" width="110px" /></a>
+
+                <a style="font-size: x-large" class="navbar-brand" asp-area="" asp-controller="Channels" asp-action="Index"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">                                             
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            @*<a class="nav-link text-dark" asp-area="" asp-controller="BlogPosts" asp-action="Index">Blog</a>*@
+                            @{ if (canDelete)
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="UserManager" asp-action="GetUserLists">Manage Users</a>
+                                }
+                            }
                         </li>
                     </ul>
                 </div>
@@ -49,7 +58,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Greenit Vanegas - <a asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
+            &copy; 2019 - Kystemz blogz - <a asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
         </div>
     </footer>
 
