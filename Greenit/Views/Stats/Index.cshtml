@@ -28,7 +28,7 @@
                Total # of comments
             </th>
             <th>
-                Most Recent Post
+                Most Recent Comment
             </th>
         </tr>
     </thead>
@@ -46,16 +46,7 @@
                 @Html.DisplayFor(modelItem => Model.commentsSize)
             </td>
             <td>
-                @{
-                    if (Model.mostRecentComment.Length != 0) {
-                        Html.DisplayFor(modelItem => Model.mostRecentComment[0].Body);
-                    }
-                    else
-                    {
-                        <p>0</p>
-                    }
-
-                }
+                @Html.DisplayFor(modelItem => Model.mostRecentComment[0].Body)
             </td>
         </tr>
         

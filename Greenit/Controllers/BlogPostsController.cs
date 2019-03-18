@@ -48,7 +48,7 @@ namespace Greenit.Controllers
             //var currentUser = await _userManger.GetUserAsync(User); 
         }
 
-        [HttpGet, Route("Details/{id?}/{slug}")]
+        [HttpGet, Route("BlogPosts/Details/{id?}/{slug}")]
         public async Task<IActionResult> Details(int? id, string slug)
         {
             if (id == null)
@@ -179,7 +179,7 @@ namespace Greenit.Controllers
                                                 .FirstOrDefaultAsync();
                 Post.Comments.Add(comment);
                 await _context.SaveChangesAsync();
-                string url = "Details/" + comment.PostId;
+                string url = "Details/" + comment.PostId+"/"+Post.Slug;
                 return Redirect(Url.RouteUrl("Details") + url);
             }
             return View(comment);

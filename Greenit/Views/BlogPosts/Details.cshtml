@@ -36,7 +36,9 @@
 {
     @foreach (var comment in Model.Comments)
     {
-        <p class="commentField"><i style="color: #8dc73f;">@comment.UserId:</i> @comment.Body</p>
+        <p class="commentField"><i style="color: #8dc73f;">@comment.UserId:</i> @comment.Body<br />
+            <small>Posted at: @comment.Posted</small>
+        </p>
     }
 }
 <div>
