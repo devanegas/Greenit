@@ -20,13 +20,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Body" class="control-label"></label>
-                <input asp-for="Body" class="form-control" />
+                <textarea asp-for="Body" class="form-control" rows="10" cols="40" placeholder="Write your entry here..."></textarea>
                 <span asp-validation-for="Body" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Posted" class="control-label"></label>
-                <input asp-for="Posted" class="form-control" />
-                <span asp-validation-for="Posted" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

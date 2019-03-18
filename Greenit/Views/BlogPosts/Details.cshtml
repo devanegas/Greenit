@@ -22,18 +22,28 @@
         <div class="card-body">
             <h3 class="card-title">@Html.DisplayFor(model => model.Title)</h3>
             <small><i>&nbsp&nbsp&nbsp&nbsp- Posted by: @Html.DisplayFor(model => model.UserId)</i></small><br /><br />
-            
+
             <p class="card-text" style="color:black;">@Html.DisplayFor(model => model.Body)</p>
             <p class="card-text"><small class="text-muted">Time Uploaded: @Html.DisplayFor(model => model.Posted)</small></p>
         </div>
     </div>
-    
+
 </div>
-<div>
-    @if (canEdit)
+<br />
+<strong><h3>Comments</h3></strong>
+<br />
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    @foreach (var comment in Model.Comments)
     {
-        <a asp-action="Edit" asp-route-id="@Model.Id">[ Edit Entry ]</a>
+        <p class="commentField"><i style="color: #8dc73f;">@comment.UserId:</i> @comment.Body</p>
     }
+}
+<div>
+    @*@if (canEdit)
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">[ Edit Entry ]</a>
+        }*@
     @if (canAdd)
     {
         <br />
@@ -41,7 +51,7 @@
         <br />
         @Html.Partial("AddCommentPartial.cshtml", new Comment() { PostId = Model.Id });
     }
-    
 
-    <a asp-action="Index">Back to List</a>
+
+    <a asp-controller="Channels" asp-action="Index">Back to List</a>
 </div>

@@ -178,7 +178,8 @@ namespace Greenit.Controllers
                                                 .FirstOrDefaultAsync();
                 Post.Comments.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string url = "Details/" + comment.PostId;
+                return Redirect(Url.RouteUrl("Details") + url);
             }
             return View(comment);
         }

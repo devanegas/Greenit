@@ -22,9 +22,9 @@ body{
     background-color: black;
 }
 
-.commentField{
+.commentField {
     padding: 10px;
-    background-color:lightgray;
+    background-color: #353535;
     border-radius: 15px;
 }
 
