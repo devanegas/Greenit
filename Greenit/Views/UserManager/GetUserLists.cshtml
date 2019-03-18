@@ -1,9 +1,26 @@
 ﻿@model IEnumerable<UserModel>
-@foreach (var user in Model)
-{
-    <p>
-        @Html.DisplayFor(M => user.Email)
-        <a asp-action="BlockUserFromSite" asp-route-user="@user.Email">BLOCK THIS USER</a> |
-        <a asp-action="UnblockUserFromSite" asp-route-user="@user.Email">UNBLOCK THIS USER</a>
-    </p>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/user_icon.png" height="30px" width="30px" />
+                    @Html.DisplayFor(M => user.Email)
+                </td>
+                <td>
+                    <a asp-action="BlockUserFromSite" asp-route-user="@user.Email">BLOCK THIS USER</a> |
+                    <a asp-action="UnblockUserFromSite" asp-route-user="@user.Email">UNBLOCK THIS USER</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

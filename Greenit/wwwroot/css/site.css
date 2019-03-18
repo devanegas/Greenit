@@ -34,24 +34,40 @@ body{
   }
 }
 
-h2{
-    color:white;
+table {
+    border: 2px dimgray;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
+h1{
+    color:white;
+}
+h4, h3, h5 {
+    color: #8dc73f;
+}
 
 thead{
-    background-color: dimgray;
+    background-color: white;
     color: #F0f7F4;
 }
 
+th{
+    color:black;
+}
 td {
     background-color: rgba(0, 0, 0, .05);
-    color:green;
-    font-weight:bold;
+    color: #8dc73f;
+    font-weight: bold;
+}
+
+a.letteredChannel {
+    color: #8dc73f;
+    text-decoration: none;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
@@ -83,6 +99,8 @@ body {
     font-family: museo;
     background-color: black;
     background-size:cover;
+    width: 100%;
+
 }
 .footer {
   position: absolute;
@@ -114,4 +132,13 @@ header {
 .nav-link text-dark {
     background-color: white !important;
     color: white;
+}
+
+p, label{
+    color:white;
+}
+
+button.btn.btn-primary, input.btn.btn-primary {
+    background-color: #8dc73f;
+    border-color: black;
 }

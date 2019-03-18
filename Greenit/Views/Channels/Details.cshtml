@@ -14,34 +14,33 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Channel</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-    </dl>
-    <h3>Posts</h3>
+    <h5><i>&nbsp&nbsp&nbsp&nbspChannel:  @Html.DisplayFor(modelItem => Model.Name)</i></h5>
+    <hr />
+
+    <h3>Posts:</h3>
+    <br />
     @if (Model.posts != null && Model.posts.Any())
     {
         @foreach (var post in Model.posts)
-        {
-            <h4><a asp-controller="BlogPosts" asp-action="Details" asp-route-id="@post.Id">@post.Title</a></h4><br>
+        {<a class="letteredChannel" asp-controller="BlogPosts" asp-action="Details" asp-route-id="@post.Id">
+             <h5>
+                 &nbsp&nbsp&nbsp&nbsp<img src="~/images/blog_icon.png" height="30px" width="30px" />
+                 @post.Title
+             </h5><br>
+         </a>
         }
     }
 </div>
 <div>
     @if (canEdit)
     {
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit  |</a> 
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit Channel Name |</a> 
     }
 
     <a asp-action="Index">Back to List</a>
 </div>
+<br />
 @if (canAdd)
 {
 

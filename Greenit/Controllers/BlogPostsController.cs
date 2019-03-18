@@ -72,7 +72,7 @@ namespace Greenit.Controllers
             return View();
         }
 
-
+        [Authorize(Policy = MyIdentityData.BlogPolicy_Edit)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,6 +81,7 @@ namespace Greenit.Controllers
             }
 
             var blogPost = await _context.BlogPosts.FindAsync(id);
+            //blogPost.Posted = DateTime.Now;
             if (blogPost == null)
             {
                 return NotFound();
@@ -105,6 +106,7 @@ namespace Greenit.Controllers
                 {
                     try
                     {
+                        blogPost.Posted = DateTime.Now;
                         _context.Update(blogPost);
                         await _context.SaveChangesAsync();
                     }
